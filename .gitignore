@@ -1,0 +1,12 @@
+# Python build artefacts
+__pycache__/
+*.py[cod]
+
+# Local environments and editor settings
+.venv/
+.idea/
+.vscode/
+
+# Temporary PDF render previews
+preview/
+*.tmp
