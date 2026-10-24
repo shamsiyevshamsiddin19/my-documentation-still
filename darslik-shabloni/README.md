@@ -8,7 +8,10 @@ U quyidagilarni bir xil uslubda yaratadi:
 - o'ngdagi mavzu nomi va sahifa raqami;
 - serif asosiy matn hamda sans-serif navigatsiya elementlari;
 - pastdagi `shamsiyev.uz` footer;
-- 1-sahifada uslub yo'riqnomasi, 2-sahifada esa bo'sh A4 darslik sahifasi.
+- bitta mutlaqo bo'sh A4 darslik sahifasi.
+
+PDFning o'zida qo'llanma yoki texnik izoh yo'q. U faqat tayyor, bo'sh sahifa
+qolipi; ushbu README esa undan foydalanish uchun yagona yo'riqnomadir.
 
 ## Ishga tushirish
 
@@ -20,10 +23,11 @@ U quyidagilarni bir xil uslubda yaratadi:
    python generate_template.py --title "Rus tili: yangi mavzu" --output Darslik_shabloni.pdf
    ```
 
-`Darslik_shabloni.pdf` shu buyruq bilan yaratilgan tekshirilgan namunadir.
+`Darslik_shabloni.pdf` shu buyruq bilan yaratilgan tekshirilgan namunadir. U
+bitta bo'sh sahifadan iborat.
 
 ## Moslashtirish
 
 `--title` orqali sahifa headeridagi mavzu nomi belgilanadi. Brend yozuvi va footer qiymatlari esa `generate_template.py` faylining yuqori qismidagi `BRAND_NAME` hamda `FOOTER_TEXT` konstantalarida turadi.
 
-Keyingi to'liq darsliklar uchun qoida quyidagicha: avval Markdown yoki mavzu matni tayyorlanadi, keyin shu vizual tizim bilan PDFga chiqariladi. Darslikning pedagogik qolipi: kirish va maqsad → sxema/jadval → qoida → ikki tilli misol → `Xato / To'g'ri` → mashq → javoblar → xulosa.
+Keyingi to'liq darsliklar uchun qoida quyidagicha: avval Markdown yoki mavzu matni tayyorlanadi, keyin shu vizual tizim bilan PDFga chiqariladi. Tavsiya etiladigan pedagogik ketma-ketlik: kirish va maqsad → sxema/jadval → qoida → ikki tilli misol → `Xato / To'g'ri` → mashq → javoblar → xulosa.

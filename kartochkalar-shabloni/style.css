@@ -1,0 +1,99 @@
+/* Rus tili — yordamchi so'zlar KARTOCHKALARI.
+   Dizayn uslubi: "JWT va httpOnly Cookies" taqdimoti.
+
+   QIRQISH MANTIG'I:
+   A4 varaq aniq 6 ga bo'linadi — 105 x 99 mm. Kartochkalar bir-biriga
+   tegib turadi, oraliq yo'lak YO'Q. Shuning uchun:
+       1 ta vertikal + 2 ta gorizontal = JAMI 3 TA TO'G'RI QIRQISH.
+   Chiziqlar faqat ichki chegaralarda — varaq cheti kartochkaning o'z cheti.
+
+   Butun siyoh kartochka chetidan 6 mm ichkarida: printer qog'oz chetini
+   chop eta olmasa ham (odatda ~5 mm) matn kesilmaydi, duplexda 1-2 mm
+   siljish bo'lsa ham bilinmaydi. */
+
+@font-face { font-family:'Noto Sans'; font-style:normal; font-weight:400; font-display:block;
+  src:url(fonts/notosans-400.woff2) format('woff2'); }
+@font-face { font-family:'Noto Sans'; font-style:italic; font-weight:400; font-display:block;
+  src:url(fonts/notosans-400i.woff2) format('woff2'); }
+@font-face { font-family:'Noto Sans'; font-style:normal; font-weight:700; font-display:block;
+  src:url(fonts/notosans-700.woff2) format('woff2'); }
+@font-face { font-family:'Montserrat'; font-style:normal; font-weight:700; font-display:block;
+  src:url(fonts/montserrat-latin.woff2) format('woff2'); }
+
+:root{
+  --qora:#1F1F1F;
+  --qizil:#D92229;
+  --qizil-och:#FF9A9E;
+  --oq:#FFFFFF;
+  --fon:#F7F7F5;
+  --chegara:#E2E2DF;
+  --kul:#5A5A5A;
+  --cut:#C9C5BC;
+}
+
+/* chet yo'q — varaqning o'zi 6 ga bo'linadi */
+@page { size:A4; margin:0; }
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{ font-family:'Noto Sans', sans-serif; color:var(--qora); -webkit-font-smoothing:antialiased; }
+
+.varaq{ page-break-after:always; break-after:page; }
+.varaq:last-child{ page-break-after:auto; break-after:auto; }
+
+table.tor{ width:209.8mm; border-collapse:collapse; table-layout:fixed; }
+table.tor td{
+  width:104.9mm; height:98.9mm;
+  padding:6mm;                  /* xavfsiz chet — siyoh shu ichkarida */
+  vertical-align:top;
+  border:none;
+}
+/* faqat ICHKI chegaralar — qirqish chiziqlari */
+table.tor tr td:first-child{ border-right:.4pt dashed var(--cut); }
+table.tor tr:not(:last-child) td{ border-bottom:.4pt dashed var(--cut); }
+
+/* ── kartochka ───────────────────────────────────────── */
+.karta{
+  height:100%;
+  background:var(--oq);
+  border:.5pt solid var(--chegara);
+  display:flex; flex-direction:column;
+  overflow:hidden;
+}
+
+.tasma{
+  height:13mm; background:var(--qora);
+  display:flex; flex-direction:row; align-items:stretch; flex:none;
+}
+.yorliq{
+  width:17mm; background:var(--qizil);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat', sans-serif; font-weight:700;
+  font-size:12.5pt; color:var(--oq); letter-spacing:.3pt;
+}
+.nom{
+  flex:1; display:flex; align-items:center;
+  padding:0 5.5mm;
+  font-family:'Montserrat', sans-serif; font-weight:700;
+  font-size:7.5pt; letter-spacing:1.8pt; color:var(--oq);
+}
+.orqa .nom{ justify-content:flex-end; color:var(--qizil-och); }
+
+.tana{
+  flex:1; display:flex; align-items:center; justify-content:center;
+  padding:7mm 7mm;
+}
+.gap{ font-size:16pt; line-height:1.5; text-align:center; }
+.orqa .gap{ font-size:16.5pt; line-height:1.55; }
+.gap b{ font-weight:700; color:var(--qizil); }
+
+.izoh{
+  flex:none;
+  background:var(--fon);
+  border-top:.5pt solid var(--chegara);
+  padding:4mm 6mm;
+  font-size:9pt; line-height:1.45; color:var(--kul); text-align:center;
+}
+.izoh .t{ font-weight:700; color:var(--qizil); font-style:normal; }
+
+td.bosh{ padding:6mm; }

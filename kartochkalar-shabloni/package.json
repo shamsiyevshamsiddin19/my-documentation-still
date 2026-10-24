@@ -1,0 +1,12 @@
+{
+  "name": "yordamchi-sozlar-kartochkalari",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A4 ikki tomonlama rus tili kartochkalari shabloni",
+  "scripts": {
+    "build": "python3 build.py && node generate_pdf.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

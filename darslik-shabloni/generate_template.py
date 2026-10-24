@@ -113,87 +113,15 @@ def draw_footer(canvas: Canvas, fonts: dict[str, str]) -> None:
     canvas.drawCentredString(LAYOUT.width / 2, 43.9, FOOTER_TEXT)
 
 
-def draw_underlined_heading(
-    canvas: Canvas,
-    text: str,
-    x: float,
-    y: float,
-    font_name: str,
-    font_size: float,
-) -> None:
-    """Darslik uslubidagi serif sarlavha va uning ostidagi chiziqni chizadi."""
-    canvas.setFillColor(TEXT_DARK)
-    canvas.setStrokeColor(TEXT_DARK)
-    canvas.setFont(font_name, font_size)
-    canvas.drawString(x, y, text)
-    text_width = canvas.stringWidth(text, font_name, font_size)
-    canvas.setLineWidth(0.75)
-    canvas.line(x, y - 2.0, x + text_width, y - 2.0)
-
-
-def draw_style_guide(canvas: Canvas, title: str, fonts: dict[str, str]) -> None:
-    """Birinchi sahifada foydalanish uchun minimal dizayn qo'llanmasini chiqaradi."""
-    draw_header(canvas, title, 1, fonts)
-    draw_footer(canvas, fonts)
-
-    x = LAYOUT.left_margin
-    y = 688.0
-    draw_underlined_heading(canvas, "Darslik shabloni — dizayn qo'llanmasi", x, y, fonts["TemplateSerifBold"], 14.5)
-
-    sections = (
-        (
-            "1. Sahifa tizimi",
-            (
-                "A4 format; chap va o'ng hoshiyalar taxminan 2,2 sm.",
-                "Header: brend, mavzu nomi va sahifa raqami. Footer: markazdagi domen.",
-            ),
-        ),
-        (
-            "2. Tipografiya",
-            (
-                "Asosiy sarlavha: serif bold, 14,5 pt; tagida 0,75 pt chiziq.",
-                "Bo'lim sarlavhasi: serif bold, 12 pt; asosiy matn: serif, 10,5–11 pt.",
-                "Navigatsiya elementlari: sans-serif; matn rangi #111111.",
-            ),
-        ),
-        (
-            "3. Pedagogik ketma-ketlik",
-            (
-                "Kirish va maqsad → sxema yoki jadval → qoida → misol → mashq → javob → xulosa.",
-                "Xatolarni alohida " + '"Xato / To\'g\'ri / Nega"' + " blokida ko'rsating.",
-            ),
-        ),
-        (
-            "4. Toza qolipdan foydalanish",
-            (
-                "2-sahifadan yangi darslik sahifasi sifatida boshlang.",
-                "Mavzu sarlavhasi, ruscha misol va o'zbekcha izohni bir xil ritmda saqlang.",
-            ),
-        ),
-    )
-
-    for heading, lines in sections:
-        y -= 31.0
-        draw_underlined_heading(canvas, heading, x, y, fonts["TemplateSerifBold"], 12.0)
-        y -= 19.0
-        canvas.setFillColor(TEXT_DARK)
-        canvas.setFont(fonts["TemplateSerif"], 10.5)
-        for line in lines:
-            canvas.drawString(x, y, "• " + line)
-            y -= 16.0
-
-
 def create_template(output_path: Path, title: str) -> None:
-    """Ikki sahifali: qo'llanma va mutlaqo bo'sh darslik qolipini yaratadi."""
+    """Header va footerli mutlaqo bo'sh bitta A4 darslik qolipini yaratadi."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fonts = register_fonts()
     canvas = Canvas(str(output_path), pagesize=A4)
     canvas.setTitle("Darslik shabloni")
     canvas.setAuthor(BRAND_NAME)
 
-    draw_style_guide(canvas, title, fonts)
-    canvas.showPage()
-    draw_header(canvas, title, 2, fonts)
+    draw_header(canvas, title, 1, fonts)
     draw_footer(canvas, fonts)
     canvas.save()
 
